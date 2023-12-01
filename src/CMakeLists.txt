@@ -18,11 +18,13 @@ foreach(item ${BENCHMARK_MAIN})
 endforeach()
 
 add_library(benchmark ${SOURCE_FILES})
+
 add_library(benchmark::benchmark ALIAS benchmark)
 set_target_properties(benchmark PROPERTIES
   OUTPUT_NAME "benchmark"
   VERSION ${GENERIC_LIB_VERSION}
   SOVERSION ${GENERIC_LIB_SOVERSION}
+  COMPILE_FLAGS "-s SIDE_MODULE=1"
 )
 target_include_directories(benchmark PUBLIC
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
@@ -71,6 +73,7 @@ set_target_properties(benchmark_main PROPERTIES
   VERSION ${GENERIC_LIB_VERSION}
   SOVERSION ${GENERIC_LIB_SOVERSION}
   DEFINE_SYMBOL benchmark_EXPORTS
+  COMPILE_FLAGS "-s SIDE_MODULE=1"
 )
 target_link_libraries(benchmark_main PUBLIC benchmark::benchmark)
 
