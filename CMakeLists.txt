@@ -214,9 +214,9 @@ else()
   # (because of deprecated overload)
   add_cxx_compiler_flag(-wd654)
   add_cxx_compiler_flag(-Wthread-safety)
-  if (HAVE_CXX_FLAG_WTHREAD_SAFETY)
-    cxx_feature_check(THREAD_SAFETY_ATTRIBUTES "-DINCLUDE_DIRECTORIES=${PROJECT_SOURCE_DIR}/include")
-  endif()
+  # if (HAVE_CXX_FLAG_WTHREAD_SAFETY)
+  #   cxx_feature_check(THREAD_SAFETY_ATTRIBUTES "-DINCLUDE_DIRECTORIES=${PROJECT_SOURCE_DIR}/include")
+  # endif()
 
   # On most UNIX like platforms g++ and clang++ define _GNU_SOURCE as a
   # predefined macro, which turns on all of the wonderful libc extensions.
@@ -305,7 +305,7 @@ if (NOT BENCHMARK_ENABLE_EXCEPTIONS AND HAVE_STD_REGEX
   message(WARNING "Using std::regex with exceptions disabled is not fully supported")
 endif()
 
-cxx_feature_check(STEADY_CLOCK)
+# cxx_feature_check(STEADY_CLOCK)
 # Ensure we have pthreads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
